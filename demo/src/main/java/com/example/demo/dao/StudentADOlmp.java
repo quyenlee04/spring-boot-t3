@@ -29,6 +29,7 @@ public class StudentADOlmp implements StudentDao {
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         Student student = entityManager.find(Student.class, id);
         entityManager.remove(student);
@@ -53,8 +54,10 @@ public class StudentADOlmp implements StudentDao {
     }
 
     @Override
+    @Transactional
     public int deleteAll() {
-        return 0;
+        int deleteFromStudent = entityManager.createQuery("DELETE FROM Student").executeUpdate();
+        return deleteFromStudent;
     }
 
 }

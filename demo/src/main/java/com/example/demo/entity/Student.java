@@ -25,7 +25,6 @@ public class Student {
     public Student( String fristname,String lastname,  String email) {
         this.fristname = fristname;
         this.lastname = lastname;
-
         this.email = email;
     }
 

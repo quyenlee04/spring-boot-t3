@@ -22,8 +22,8 @@ public class DemoApplication {
 		public CommandLineRunner commandLineRunner(StudentDao studentDao) {
 			return runner -> {
 				System.out.println("Connecting to database");
-//				CreateStudent(studentDao);
-//				System.out.println("Inserting new student");
+				CreateStudent(studentDao);
+				System.out.println("Inserting new student");
 
 //				System.out.println("Viewing student");
 //				viewStudent(studentDao);
@@ -31,7 +31,11 @@ public class DemoApplication {
 //				viewAllStudents(studentDao);
 
 //				viewStudentByName(studentDao);
-				updateStudent(studentDao);
+//				updateStudent(studentDao);
+
+//				deleteStudent(studentDao);
+
+//				deleteAll(studentDao);
 			};
 		}
 
@@ -43,8 +47,16 @@ public class DemoApplication {
 
 		}
 		public void CreateStudent(StudentDao studentDao) {
-			Student tempStudent = new Student("Ngọc", "Lê", "quyenle5184@gmail.com");
+			Student tempStudent = new Student("Quyến", "Lê", "quyenle5184@gmail.com");
 			studentDao.save(tempStudent);
+			Student tempStudent1 = new Student("Lợi", "Lê", "quyenle5184@gmail.com");
+			studentDao.save(tempStudent1);
+			Student tempStudent2 = new Student("Ngu", "Lê", "quyenle5184@gmail.com");
+			studentDao.save(tempStudent2);
+			Student tempStudent3 = new Student("Ngỉu", "Lê", "quyenle5184@gmail.com");
+			studentDao.save(tempStudent3);
+			Student tempStudent4 = new Student("Ngọc", "Lê", "quyenle5184@gmail.com");
+			studentDao.save(tempStudent4);
 		}
 
 		public void viewAllStudents(StudentDao studentDao) {
@@ -67,6 +79,15 @@ public class DemoApplication {
 		student.setLastname("Ngu");
 		student.setEmail("nhongu@gmail.com");
 		studentDao.update(student);
+		}
+
+		public void deleteStudent(StudentDao studentDao) {
+			studentDao.delete(1);
+		}
+
+		public void deleteAll(StudentDao studentDao) {
+			studentDao.deleteAll();
+			System.out.println("Deleted all students");
 		}
 	}
 
