@@ -31,7 +31,11 @@ public class DemoApplication {
 //				viewAllStudents(studentDao);
 
 //				viewStudentByName(studentDao);
-				updateStudent(studentDao);
+//				updateStudent(studentDao);
+
+//				deleteStudent(studentDao);
+
+				deleteAll(studentDao);
 			};
 		}
 
@@ -67,6 +71,15 @@ public class DemoApplication {
 		student.setLastname("Ngu");
 		student.setEmail("nhongu@gmail.com");
 		studentDao.update(student);
+		}
+
+		public void deleteStudent(StudentDao studentDao) {
+			studentDao.delete(1);
+		}
+
+		public void deleteAll(StudentDao studentDao) {
+			studentDao.deleteAll();
+			System.out.println("Deleted all students");
 		}
 	}
 
