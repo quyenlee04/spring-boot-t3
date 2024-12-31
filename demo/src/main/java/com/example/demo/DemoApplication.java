@@ -1,7 +1,14 @@
 package com.example.demo;
 
+import com.example.demo.dao.StudentDao;
+import com.example.demo.entity.Student;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -10,4 +17,39 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-}
+	@Bean
+
+		public CommandLineRunner commandLineRunner(StudentDao studentDao) {
+			return runner -> {
+				System.out.println("Connecting to database");
+				CreateStudent(studentDao);
+				System.out.println("Inserting new student");
+
+//				System.out.println("Viewing student");
+//				viewStudent(studentDao);
+
+				viewAllStudents(studentDao);
+			};
+		}
+
+		public void viewStudent(StudentDao studentDao) {
+		int id = 1;
+			Student students = studentDao.findById(id);
+
+				System.out.println(students);
+
+		}
+		public void CreateStudent(StudentDao studentDao) {
+			Student tempStudent = new Student("Quyến", "Lê Văn", "quyenle5184@gmail.com");
+			studentDao.save(tempStudent);
+		}
+
+		public void viewAllStudents(StudentDao studentDao) {
+			List<Student> students = studentDao.findAll();
+			for (Student student : students) {
+				System.out.println(student);
+			}
+		}
+	}
+
+
