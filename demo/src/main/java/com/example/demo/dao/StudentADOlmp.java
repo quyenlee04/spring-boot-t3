@@ -23,13 +23,15 @@ public class StudentADOlmp implements StudentDao {
     }
 
     @Override
+    @Transactional
     public void update(Student student) {
-
+        entityManager.merge(student);
     }
 
     @Override
     public void delete(int id) {
-
+        Student student = entityManager.find(Student.class, id);
+        entityManager.remove(student);
     }
 
     @Override
@@ -45,7 +47,9 @@ public class StudentADOlmp implements StudentDao {
 
     @Override
     public List<Student> findByName(String name) {
-        return List.of();
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student WHERE fristname = :name", Student.class);
+        query.setParameter("name", name);
+        return query.getResultList();
     }
 
     @Override

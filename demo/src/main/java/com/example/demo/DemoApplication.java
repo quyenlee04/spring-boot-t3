@@ -22,13 +22,16 @@ public class DemoApplication {
 		public CommandLineRunner commandLineRunner(StudentDao studentDao) {
 			return runner -> {
 				System.out.println("Connecting to database");
-				CreateStudent(studentDao);
-				System.out.println("Inserting new student");
+//				CreateStudent(studentDao);
+//				System.out.println("Inserting new student");
 
 //				System.out.println("Viewing student");
 //				viewStudent(studentDao);
 
-				viewAllStudents(studentDao);
+//				viewAllStudents(studentDao);
+
+//				viewStudentByName(studentDao);
+				updateStudent(studentDao);
 			};
 		}
 
@@ -40,7 +43,7 @@ public class DemoApplication {
 
 		}
 		public void CreateStudent(StudentDao studentDao) {
-			Student tempStudent = new Student("Quyến", "Lê Văn", "quyenle5184@gmail.com");
+			Student tempStudent = new Student("Ngọc", "Lê", "quyenle5184@gmail.com");
 			studentDao.save(tempStudent);
 		}
 
@@ -49,6 +52,21 @@ public class DemoApplication {
 			for (Student student : students) {
 				System.out.println(student);
 			}
+		}
+
+		public void viewStudentByName(StudentDao studentDao) {
+			List<Student> students = studentDao.findByName("Ngoc");
+			for (Student student : students) {
+				System.out.println(student);
+			}
+		}
+
+		public void updateStudent(StudentDao studentDao) {
+		Student student = studentDao.findById(1);
+		student.setFristname("Nhớ");
+		student.setLastname("Ngu");
+		student.setEmail("nhongu@gmail.com");
+		studentDao.update(student);
 		}
 	}
 
