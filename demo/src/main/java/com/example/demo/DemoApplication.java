@@ -35,7 +35,11 @@ public class DemoApplication {
 
 //				deleteStudent(studentDao);
 
+<<<<<<< HEAD
 //				deleteAll(studentDao);
+=======
+				deleteAll(studentDao);
+>>>>>>> 54c6a7d3ae85f7d50ac8aad099f196ca19686ea5
 			};
 		}
 
